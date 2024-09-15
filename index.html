@@ -14,8 +14,9 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Courier New', monospace;
+            background-color: #000;
+            color: #fff;
             position: relative;
             overflow-x: hidden;
         }
@@ -30,7 +31,7 @@
             justify-content: space-between;
             align-items: center;
             background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000; /* Ensure the navigation is always on top */
+            z-index: 1000;
         }
 
         nav a {
@@ -55,11 +56,11 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            z-index: 1000; /* Ensure the sidebar is always visible */
+            z-index: 1000;
         }
 
         .sidebar a {
-            color: black;
+            color: white;
             text-decoration: none;
             font-size: 24px;
             transition: color 0.3s ease;
@@ -73,32 +74,61 @@
             font-size: 24px;
         }
 
-        /* Header Section */
-        header {
+        /* Home Section */
+        .container {
+            display: flex;
             height: 100vh;
+        }
+
+        .left {
+            width: 50%;
+            background-color: #000;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .right {
+            width: 50%;
             background-color: #f5f5f5;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
             position: relative;
-            z-index: 5; /* Set content above the canvas */
         }
 
-        header img {
-            width: 150px;
-            height: 150px;
+        .left h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .left p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .right img {
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
             object-fit: cover;
+            animation: float 6s ease-in-out infinite;
         }
 
-        header h1 {
-            font-size: 3rem;
-            margin-top: 20px;
-        }
-
-        header p {
-            font-size: 1.2rem;
+        /* Floating Animation for Spaceman */
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
         }
 
         /* Bubbles Animation */
@@ -109,8 +139,8 @@
             top: 0;
             left: 0;
             overflow: hidden;
-            z-index: 1; /* Set canvas behind the content but above background */
-            pointer-events: none; /* Prevent canvas from blocking interactions */
+            z-index: 1;
+            pointer-events: none;
         }
 
         .bubble {
@@ -171,78 +201,110 @@
             animation-duration: 18s;
         }
 
-        /* Stars Animation */
-        .stars {
+        /* Stars and planets background for About */
+        .about-container {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-image: url('https://www.nasa.gov/wp-content/uploads/2017/02/361_45p_22_12c.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .about-overlay {
             position: absolute;
-            width: 100%;
-            height: 100%;
             top: 0;
             left: 0;
-            overflow: hidden;
-            z-index: 0; /* Set stars behind everything */
-            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Transparent overlay for background */
+            z-index: 1;
         }
 
-        .star {
+        .about-text {
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            font-size: 1.2rem;
+            white-space: pre-line;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        .about-text::before {
+            content: 'ABOUT';
+            font-size: 10rem;
             position: absolute;
-            background-color: white;
-            border-radius: 50%;
-            animation: twinkle 5s infinite ease-in-out;
-            opacity: 0.8;
+            top: -60px;
+            left: -30px;
+            color: rgba(255, 255, 255, 0.05);
+            z-index: -1;
         }
 
-        @keyframes twinkle {
-            0%, 100% {
-                opacity: 0.8;
-            }
-            50% {
-                opacity: 0.4;
-            }
+        /* Typewriter Effect */
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
         }
 
-        .star:nth-child(1) {
-            width: 3px;
-            height: 3px;
-            top: 10%;
-            left: 15%;
+        @keyframes blink {
+            50% { border-color: transparent; }
         }
 
-        .star:nth-child(2) {
-            width: 2px;
-            height: 2px;
-            top: 25%;
-            left: 45%;
+        .typewriter-line {
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid;
+            width: 0;
         }
 
-        .star:nth-child(3) {
-            width: 4px;
-            height: 4px;
-            top: 50%;
-            left: 30%;
+        /* Typewriter for each line */
+        .typewriter-line:nth-child(1) {
+            animation: typing 3s steps(40, end) forwards;
         }
 
-        .star:nth-child(4) {
-            width: 3px;
-            height: 3px;
-            top: 70%;
-            left: 80%;
+        .typewriter-line:nth-child(2) {
+            animation: typing 3s steps(40, end) forwards;
+            animation-delay: 3s;
         }
 
-        .star:nth-child(5) {
-            width: 5px;
-            height: 5px;
-            top: 90%;
-            left: 50%;
+        .typewriter-line:nth-child(3) {
+            animation: typing 3s steps(40, end) forwards;
+            animation-delay: 6s;
         }
 
-        /* Section Styling */
+        .typewriter-line:nth-child(4) {
+            animation: typing 3s steps(40, end) forwards;
+            animation-delay: 9s;
+        }
+
+        .typewriter-line:nth-child(5) {
+            animation: typing 3s steps(40, end) forwards;
+            animation-delay: 12s;
+            border-right: 3px solid; /* Add blink effect only to the last line */
+        }
+
+        /* Character Image */
+        .about-character {
+            position: absolute;
+            right: 50px;
+            bottom: 50px;
+            max-width: 300px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Other Sections */
         section {
             padding: 100px 20px;
             background-color: #fff;
             text-align: center;
             min-height: 100vh;
             position: relative;
-            z-index: 5; /* Ensure content is above the canvas */
+            z-index: 5;
         }
 
         h2 {
@@ -271,7 +333,7 @@
             background-color: #000;
             color: white;
             position: relative;
-            z-index: 5; /* Ensure footer content is above the canvas */
+            z-index: 5;
         }
     </style>
 </head>
@@ -298,32 +360,37 @@
         <a href="#"><i class="fab fa-youtube"></i></a>
     </div>
 
-    <!-- Header Section -->
-    <header id="home">
-        <div class="bubbles">
-            <div class="bubble"></div>
-            <div class="bubble"></div>
-            <div class="bubble"></div>
-            <div class="bubble"></div>
-            <div class="bubble"></div>
+    <!-- First Page: Split Layout with Animation -->
+    <div class="container">
+        <div class="left">
+            <h1>Hi, I'm Ahmed Fayad</h1>
+            <p>Backend Developer | Software Engineer</p>
+            <p>I design and develop beautiful, functional websites.</p>
         </div>
-        <div class="stars">
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
+        <div class="right">
+            <div class="bubbles">
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+            </div>
+            <img src="https://img.freepik.com/free-photo/medium-shot-man-working-as-real-estate-agent_23-2151064973.jpg" alt="Ahmed Fayad">
         </div>
-        <img src="https://img.freepik.com/free-photo/medium-shot-man-working-as-real-estate-agent_23-2151064973.jpg" alt="Ahmed Fayad">
-        <h1>Ahmed Fayad</h1>
-        <p>Backend Developer | Software Engineer</p>
-    </header>
+    </div>
 
     <!-- About Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p>I am Ahmed Fayad, a skilled backend developer with extensive experience in building and managing scalable applications.</p>
-    </section>
+    <div class="about-container" id="about">
+        <div class="about-text">
+            <div class="typewriter-line">Hi, I'm Ahmed Fayad.</div>
+            <div class="typewriter-line">I'm a backend developer and software engineer.</div>
+            <div class="typewriter-line">I enjoy creating scalable and efficient systems using technologies</div>
+            <div class="typewriter-line">like PHP, Laravel, and JavaScript.</div>
+            <div class="typewriter-line">My passion is developing dynamic and interactive web experiences.</div>
+        </div>
+
+        <img src="https://react-portfolio-sigma.vercel.app/static/media/spaceman.5ec7fcfa9a803ead726c.png" alt="Astronaut Character" class="about-character">
+    </div>
 
     <!-- Skills Section -->
     <section id="skills">
