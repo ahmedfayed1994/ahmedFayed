@@ -78,6 +78,17 @@
         .container {
             display: flex;
             height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #particles-home {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
         }
 
         .left {
@@ -89,6 +100,7 @@
             justify-content: center;
             align-items: center;
             padding: 40px;
+            z-index: 1;
         }
 
         .right {
@@ -98,6 +110,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            z-index: 1;
         }
 
         .left h1 {
@@ -229,6 +242,7 @@
             animation: float 6s ease-in-out infinite;
         }
 
+
         /* Skills Section */
         #skills {
             background-color: #7a748a;
@@ -237,7 +251,16 @@
             padding: 100px 20px;
             position: relative;
             overflow: hidden;
-            z-index: 5;
+            z-index: 1;
+        }
+
+        #particles-skills {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
         }
 
         #skills h2 {
@@ -246,6 +269,7 @@
             position: relative;
             display: inline-block;
             animation: bounce 2s infinite;
+            z-index: 1;
         }
 
         @keyframes bounce {
@@ -265,6 +289,8 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 30px;
+            position: relative;
+            z-index: 1;
         }
 
         .skill-card {
@@ -276,6 +302,7 @@
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
         .skill-card img {
@@ -295,45 +322,126 @@
             box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
         }
 
-        .skill-card::before {
-            content: '';
+        /* Experience Section */
+        .experience-section {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 50px;
+            background-color: #000;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        #particles-experience {
             position: absolute;
-            width: 200%;
-            height: 200%;
-            background-color: rgba(255, 255, 255, 0.1);
-            top: -100%;
-            left: -100%;
-            transform: rotate(45deg);
-            transition: top 0.4s ease;
-            z-index: 1;
-        }
-
-        .skill-card:hover::before {
+            width: 100%;
+            height: 100%;
             top: 0;
+            left: 0;
+            z-index: 0;
         }
 
-        @keyframes float {
-            0% {
+        .experience-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Glass Effect on Number */
+        .experience-number {
+            font-size: 12rem;
+            font-weight: bold;
+            color: rgba(42, 106, 224, 0.7);
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            animation: bounce 3s infinite ease-in-out;
+        }
+
+        /* Bounce Animation */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
             }
-            50% {
-                transform: translateY(-10px);
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .experience-text {
+            text-align: center;
+            margin: 20px 0;
+            animation: slideUp 2s ease-in-out;
+        }
+
+        /* Slide Up Animation */
+        @keyframes slideUp {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
             }
             100% {
                 transform: translateY(0);
+                opacity: 1;
             }
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .skills-container {
-                flex-direction: column;
-                align-items: center;
-            }
+        .experience-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
 
-            .skill-card {
-                width: 80%;
-                text-align: center;
+        .experience-text p {
+            font-size: 1.2rem;
+            color: #aaa;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            animation: bounceStat 3s infinite ease-in-out;
+        }
+
+        .stat-item span {
+            display: block;
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-top: 5px;
+        }
+
+        /* Bounce Animation for Stats */
+        @keyframes bounceStat {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-15px);
+            }
+            60% {
+                transform: translateY(-8px);
             }
         }
 
@@ -370,6 +478,22 @@
             position: relative;
             z-index: 5;
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .experience-number {
+                font-size: 8rem;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .experience-section {
+                padding: 50px 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -397,6 +521,7 @@
 
     <!-- First Page: Split Layout with Animation -->
     <div class="container">
+        <div id="particles-home"></div>
         <div class="left">
             <h1>Hi, I'm Ahmed Fayad</h1>
             <p>Backend Developer | Software Engineer</p>
@@ -407,8 +532,8 @@
         </div>
     </div>
 
-    <!-- About Section -->
-    <div class="about-container" id="about">
+      <!-- About Section -->
+      <div class="about-container" id="about">
         <div class="about-overlay"></div> <!-- Transparent overlay for the background -->
         <div class="about-text">
             <div class="typewriter-line">Hi, I'm Ahmed Fayad.</div>
@@ -422,6 +547,7 @@
 
     <!-- Skills Section -->
     <section id="skills">
+        <div id="particles-skills"></div>
         <h2>My Super Skills</h2>
         <div class="skills-container">
             <div class="skill-card">
@@ -451,6 +577,29 @@
         </div>
     </section>
 
+    <!-- Experience Section -->
+    <section class="experience-section">
+        <div id="particles-experience"></div>
+        <div class="experience-content">
+            <div class="experience-number">5</div>
+            <div class="experience-text">
+                <h2>Years of Experience</h2>
+                <p>Providing expert solutions for top companies and startups across various industries.</p>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    50+ <span>Projects</span>
+                </div>
+                <div class="stat-item">
+                    30+ <span>Clients</span>
+                </div>
+                <div class="stat-item">
+                    10+ <span>Companies</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact">
         <h2>Contact</h2>
@@ -461,6 +610,333 @@
     <footer>
         <p>© 2024 Ahmed Fayad. All rights reserved.</p>
     </footer>
+
+    <!-- Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <!-- Particles.js Config -->
+    <script>
+        /* Home Section Particles */
+        particlesJS("particles-home", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        /* Skills Section Particles */
+        particlesJS("particles-skills", {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 1000
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        /* Experience Section Particles */
+        particlesJS("particles-experience", {
+            "particles": {
+                "number": {
+                    "value": 60,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
 
 </body>
 </html>
