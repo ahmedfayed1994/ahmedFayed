@@ -131,77 +131,7 @@
             }
         }
 
-        /* Bubbles Animation */
-        .bubbles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .bubble {
-            position: absolute;
-            bottom: -150px;
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            opacity: 0.7;
-            animation: rise 15s infinite ease-in-out;
-        }
-
-        @keyframes rise {
-            0% {
-                transform: translateY(0);
-                opacity: 0.5;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh);
-                opacity: 0;
-            }
-        }
-
-        .bubble:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            left: 20%;
-            animation-duration: 12s;
-        }
-
-        .bubble:nth-child(2) {
-            width: 100px;
-            height: 100px;
-            left: 40%;
-            animation-duration: 10s;
-        }
-
-        .bubble:nth-child(3) {
-            width: 60px;
-            height: 60px;
-            left: 60%;
-            animation-duration: 14s;
-        }
-
-        .bubble:nth-child(4) {
-            width: 90px;
-            height: 90px;
-            left: 80%;
-            animation-duration: 16s;
-        }
-
-        .bubble:nth-child(5) {
-            width: 120px;
-            height: 120px;
-            left: 30%;
-            animation-duration: 18s;
-        }
-
-        /* Stars and planets background for About */
+        /* About Section */
         .about-container {
             display: flex;
             height: 100vh;
@@ -212,6 +142,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            padding: 50px;
         }
 
         .about-overlay {
@@ -233,6 +164,7 @@
             white-space: pre-line;
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
+            z-index: 2;
         }
 
         .about-text::before {
@@ -297,33 +229,136 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        /* Other Sections */
-        section {
-            padding: 100px 20px;
-            background-color: #fff;
+        /* Skills Section */
+        #skills {
+            background-color: #7a748a;
+            color: #fff;
             text-align: center;
-            min-height: 100vh;
+            padding: 100px 20px;
             position: relative;
+            overflow: hidden;
             z-index: 5;
         }
 
-        h2 {
+        #skills h2 {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .skills-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .skill-card {
+            background-color: #1a1a1a;
+            border-radius: 20px;
+            padding: 20px;
+            width: 150px;
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card img {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-color: rgba(255, 255, 255, 0.1);
+            top: -100%;
+            left: -100%;
+            transform: rotate(45deg);
+            transition: top 0.4s ease;
+            z-index: 1;
+        }
+
+        .skill-card:hover::before {
+            top: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .skills-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .skill-card {
+                width: 80%;
+                text-align: center;
+            }
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 100px 20px;
+            background-color: #1a1a1a;
+            text-align: center;
+            color: white;
+        }
+
+        #contact h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
         }
 
-        p, ul {
+        #contact p {
             font-size: 1.2rem;
             margin-bottom: 20px;
         }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        ul li {
-            margin-bottom: 10px;
+        #contact a {
+            color: #61dafb;
+            text-decoration: none;
+            font-size: 1.5rem;
         }
 
         /* Footer */
@@ -368,13 +403,6 @@
             <p>I design and develop beautiful, functional websites.</p>
         </div>
         <div class="right">
-            <div class="bubbles">
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-            </div>
             <img src="https://img.freepik.com/free-photo/medium-shot-man-working-as-real-estate-agent_23-2151064973.jpg" alt="Ahmed Fayad">
         </div>
     </div>
@@ -394,18 +422,39 @@
 
     <!-- Skills Section -->
     <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>PHP, Laravel, JavaScript</li>
-            <li>HTML, CSS, Bootstrap</li>
-            <li>RESTful APIs, MySQL</li>
-        </ul>
+        <h2>My Super Skills</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <img src="https://img.icons8.com/?size=100&id=50519&format=png&color=000000" alt="PHP">
+                <h3>PHP</h3>
+            </div>
+            <div class="skill-card">
+                <img src="https://img.icons8.com/?size=100&id=lRjcvhvtR81o&format=png&color=000000" alt="Laravel">
+                <h3>Laravel</h3>
+            </div>
+            <div class="skill-card">
+                <img src="https://img.icons8.com/color/64/000000/javascript.png" alt="JavaScript">
+                <h3>JavaScript</h3>
+            </div>
+            <div class="skill-card">
+                <img src="https://img.icons8.com/color/64/000000/html-5.png" alt="HTML">
+                <h3>HTML</h3>
+            </div>
+            <div class="skill-card">
+                <img src="https://img.icons8.com/color/64/000000/css3.png" alt="CSS">
+                <h3>CSS</h3>
+            </div>
+            <div class="skill-card">
+                <img src="https://img.icons8.com/fluency/64/000000/api.png" alt="API">
+                <h3>APIs</h3>
+            </div>
+        </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
         <h2>Contact</h2>
-        <p>Feel free to reach out to me at ahmedfayed1000@gmail.com or connect with me on <a href="https://www.linkedin.com/in/ahmed-fayed2018/">LinkedIn</a>.</p>
+        <p>Feel free to reach out to me at <a href="mailto:ahmedfayed1000@gmail.com">ahmedfayed1000@gmail.com</a> or connect with me on <a href="https://www.linkedin.com/in/ahmed-fayed2018/">LinkedIn</a>.</p>
     </section>
 
     <!-- Footer -->
